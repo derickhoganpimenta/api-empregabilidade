@@ -13,6 +13,10 @@ export class CandidatesService {
     return await this.candidatesRepository.findAll<Candidate>();
   }
 
+  async findOne(document_number): Promise<Candidate> {
+    return await this.candidatesRepository.find({where: {document_number: document_number}});
+  }
+
   async findBy(document_number): Promise<Candidate> {
     return await this.candidatesRepository.find({include: [PublicTender], where: {document_number: document_number}});
   }
