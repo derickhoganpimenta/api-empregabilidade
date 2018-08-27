@@ -13,11 +13,11 @@ export class PublicTendersService {
     return await this.publicTendersRepository.findAll<PublicTender>();
   }
 
-  async findOne(document_number): Promise<PublicTender> {
-    return await this.publicTendersRepository.find({where: {document_number: document_number}});
+  async findOne(code): Promise<PublicTender> {
+    return await this.publicTendersRepository.find({where: {code: code}});
   }
 
-  async findBy(document_number): Promise<PublicTender> {
-    return await this.publicTendersRepository.find({include: [Candidate], where: {document_number: document_number}});
+  async findBy(code): Promise<PublicTender> {
+    return await this.publicTendersRepository.find({include: [Candidate], where: {code: code}});
   }
 }

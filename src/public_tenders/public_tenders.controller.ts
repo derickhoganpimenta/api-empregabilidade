@@ -1,7 +1,6 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { PublicTendersService } from './public_tenders.service';
 import { PublicTender } from './public_tender.entity';
-import { Candidate } from '../candidates/candidate.entity';
 
 @Controller('public_tenders')
 export class PublicTendersController {
@@ -12,13 +11,13 @@ export class PublicTendersController {
     return await this.publicTendersService.findAll();
   }
 
-  @Get(":document_number")
+  @Get(":code")
   async findOne(@Param() params): Promise<PublicTender> {
-    return await this.publicTendersService.findOne(params.document_number);
+    return await this.publicTendersService.findOne(params.code);
   }
 
-  @Get(":document_number/candidates")
+  @Get(":code/candidates")
   async findBy(@Param() params): Promise<PublicTender> {
-    return await this.publicTendersService.findBy(params.document_number);
+    return await this.publicTendersService.findBy(params.code);
   }
 }
