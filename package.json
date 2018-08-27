@@ -19,6 +19,8 @@
   "dependencies": {
     "@nestjs/common": "^5.0.0",
     "@nestjs/core": "^5.0.0",
+    "@types/cors": "^2.8.4",
+    "cors": "^2.8.4",
     "fastify-formbody": "^2.0.0",
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
