@@ -1,7 +1,9 @@
 import { Sequelize } from 'sequelize-typescript';
 import { Candidate } from '../candidates/candidate.entity';
 import { PublicTender } from '../public_tenders/public_tender.entity';
-import { CandidatePublicTender } from '../candidates_public_tenders/candidate_public_tender.entity';
+import { Occupation } from '../occupations/occupation.entity';
+import { CandidateOccupation } from '../candidates_occupations/candidate_occupation.entity';
+import { PublicTenderOccupation } from '../public_tenders_occupations/public_tender_occupation.entity';
 
 export const databaseProviders = [
   {
@@ -16,7 +18,7 @@ export const databaseProviders = [
         password: 'bb6owonoxaRzoAw-TBqpZRs7te4yorRc',
         database: 'bkalasnf',
       });
-      sequelize.addModels([Candidate, PublicTender, CandidatePublicTender]);
+      sequelize.addModels([Candidate, PublicTender, Occupation, CandidateOccupation, PublicTenderOccupation]);
       await sequelize.sync();
       return sequelize;
     },
