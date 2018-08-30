@@ -18,15 +18,25 @@ export class PublicTendersService {
     return await this.publicTendersRepository.find({include: [Occupation], where: {code: code}});
   }
 
-  async findBy(code): Promise<PublicTender> {
-    return await this.publicTendersRepository.find(
-      {
-        include:[{
-          model: Occupation,
-          include: [
-            {model: PublicTender, where: {code: code}},
-            {model: Candidate }],
+  async findCandidates(code): Promise<String[]> {
+    var public_tender: any = await this.publicTendersRepository.find({
+        where: {code: code},
+        include:[
+          {
+            model: Occupation, through: {attributes: []},
+            include: [
+              {model: Candidate},
+            ]
           }]
         });
+        var o = [];
+        for(var occupation of public_tender.occupations) {
+          for(var candidate of occupation.candidates) {
+            o.push(candidate);
+          }
+
+        }
+        return o;
   }
+
 }
