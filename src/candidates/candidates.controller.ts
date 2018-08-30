@@ -17,7 +17,7 @@ export class CandidatesController {
   }
 
   @Get(":document_number/public_tenders")
-  async findPublicTenders(@Param() params): Promise<Candidate> {
+  async findPublicTenders(@Param() params): Promise<String[]> {
     return await this.candidatesService.findPublicTenders(params.document_number);
   }
 }
