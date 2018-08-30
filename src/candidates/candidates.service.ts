@@ -30,13 +30,13 @@ export class CandidatesService {
             ]
           }]
         });
-        var o = [];
+        var public_tenders = [];
         for(var occupation of candidate.occupations) {
           for(var public_tender of occupation.public_tenders) {
-            o.push(public_tender);
+            public_tenders.push(public_tender);
           }
 
         }
-        return o;
+        return public_tenders;
   }
 }

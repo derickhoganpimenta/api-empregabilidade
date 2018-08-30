@@ -29,14 +29,14 @@ export class PublicTendersService {
             ]
           }]
         });
-        var o = [];
+        var candidates = [];
         for(var occupation of public_tender.occupations) {
           for(var candidate of occupation.candidates) {
-            o.push(candidate);
+            candidates.push(candidate);
           }
 
         }
-        return o;
+        return candidates;
   }
 
 }
