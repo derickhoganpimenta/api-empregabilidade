@@ -20,4 +20,9 @@ export class PublicTendersController {
   async findCandidates(@Param() params): Promise<String[]> {
     return await this.publicTendersService.findCandidates(params.code);
   }
+
+  @Get(":code/candidates/paginate/:number")
+  async findCandidatesWithPagination(@Param() params): Promise<String[]> {
+    return await this.publicTendersService.findCandidatesWithPagination(params.code, params.number);
+  }
 }

@@ -1,8 +1,6 @@
-Funcionalidade: candidates
+Feature: Candidates
 
-Essa funcionalidade pretende exemplificar o uso do cucumber.
-
-Cenário: Existem usuários no sistema que eu desejo saber as informações
-Dado Existem usuarios cadastrados
-Quando quando eu pesquisar os usuários
-Então retorna uma lista de usuários
+Scenario: Have candidates on database
+  Given Have registereds candidates
+  When I request /candidates
+  Then I get candidates list
