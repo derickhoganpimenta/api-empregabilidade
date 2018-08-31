@@ -1,23 +1,29 @@
-import { loadFeature, defineFeature } from '../node_modules/jest-cucumber';
-const feature = loadFeature('./test/features/candidate.feature');
-import { CandidatesService } from '../candidates/candidates.service';
+import request from 'supertest';
+import { Test, TestingModule } from '@nestjs/testing';
+import { ApplicationModule } from './../src/app.module';
+import { INestApplication } from '@nestjs/common';
+import { defineFeature, loadFeature } from 'jest-cucumber';
+import { async } from '../node_modules/rxjs/internal/scheduler/async';
+const candidateFeatures = loadFeature('./test/features/candidate.feature');
 
-jest.mock('../candidates/candidates.service');
+defineFeature(candidateFeatures, test => {
+  let app: INestApplication;
+  beforeAll(async () => {
+    const moduleFixture = await Test.createTestingModule({
+      imports: [ApplicationModule],
+    }).compile();
+    app = moduleFixture.createNestApplication();
+    await app.init();
+  });
 
-defineFeature(feature, test => {
- test('Have registereds candidates', ({
-   given,
-   when,
-   then,
- }) => {
-   given('Have registereds candidates', () => {
-     pending();
-   });
-   when('I request /candidates', () => {
-     pending();
-   });
-   then('I get candidates list', () => {
-     pending();
-   });
- });
+  test('Have registereds candidates', ({ when, then }) => {
+    let response;
+
+    when('I request /candidates', async () => {
+      response = await request(app.getHttpServer()).get('/candidates/');
+    });
+    then('I get candidates list', () => {
+      expect(Array.isArray(response)).toEqual(true);
+    });
+  });
 });
