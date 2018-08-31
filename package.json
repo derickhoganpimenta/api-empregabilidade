@@ -20,6 +20,7 @@
     "@nestjs/common": "^5.0.0",
     "@nestjs/core": "^5.0.0",
     "@types/cors": "^2.8.4",
+    "@types/es6-promise": "^3.3.0",
     "cors": "^2.8.4",
     "fastify-formbody": "^2.0.0",
     "jest-cucumber": "^1.0.7",
