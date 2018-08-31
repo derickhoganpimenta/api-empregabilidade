@@ -11,8 +11,13 @@ export class OccupationsController {
     return await this.occupationsService.findAll();
   }
 
-  @Get(":id")
-  async findOne(@Param() params): Promise<Occupation> {
-    return await this.occupationsService.findOne(params.id);
+  @Get(":id/candidates")
+  async findCandidates(@Param() params): Promise<Occupation> {
+    return await this.occupationsService.findCandidates(params.id);
+  }
+
+  @Get(":id/public_tenders")
+  async findPublicTenders(@Param() params): Promise<Occupation> {
+    return await this.occupationsService.findPublicTenders(params.id);
   }
 }

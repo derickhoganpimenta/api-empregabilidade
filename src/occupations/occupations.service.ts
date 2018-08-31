@@ -14,7 +14,11 @@ export class OccupationsService {
     return await this.occupationsRepository.findAll<Occupation>();
   }
 
-  async findOne(id): Promise<Occupation> {
-    return await this.occupationsRepository.findOne({include: [Candidate, PublicTender], where: {id: id}});
+  async findCandidates(id): Promise<Occupation> {
+    return await this.occupationsRepository.findOne({include: [Candidate], where: {id: id}});
+  }
+
+  async findPublicTenders(id): Promise<Occupation> {
+    return await this.occupationsRepository.findOne({include: [PublicTender], where: {id: id}});
   }
 }
